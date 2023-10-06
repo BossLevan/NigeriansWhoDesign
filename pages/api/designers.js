@@ -1,4 +1,4 @@
-import { google } from "googleapis";
+import { google } from 'googleapis'
 
 export default async (req, res) => {
   try {
@@ -8,27 +8,27 @@ export default async (req, res) => {
         private_key: process.env.GOOGLE_PRIVATE_KEY,
       },
       scopes: [
-        "https://www.googleapis.com/auth/drive",
-        "https://www.googleapis.com/auth/drive.file",
-        "https://www.googleapis.com/auth/spreadsheets",
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/drive.file',
+        'https://www.googleapis.com/auth/spreadsheets',
       ],
-    });
+    })
 
     const sheets = google.sheets({
       auth,
-      version: "v4",
-    });
+      version: 'v4',
+    })
 
     // Replace the spreadsheetId with your spreadsheet ID.
     // Replace the range with the tab name.
     // Issues with permissions look at this guide: https://leerob.io/snippets/google-sheets
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: "12LLA-NoHin0zQfmpEblgMjd260bmriLMowBAH1QDOhI",
-      range: "Designers", // sheet name
-    });
+      spreadsheetId: '1hS_5Lav5erNQMzyOPG-CB2eD_6YGwCOM4OmGpf1jnbY',
+      range: 'Designers', // sheet name
+    })
 
     //TODO: Map the collum to object name automatically.
-    const rows = response.data.values;
+    const rows = response.data.values
     const db = rows.map((row) => ({
       name: row[0],
       location: row[1],
@@ -36,16 +36,16 @@ export default async (req, res) => {
       link: row[3],
       approved: row[4],
       featured: row[5],
-    }));
+    }))
 
     let sanitizeResult = db.filter(
-      (item) => item.name != "" && item.approved == "Yes"
-    );
+      (item) => item.name != '' && item.approved == 'Yes',
+    )
 
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify(sanitizeResult));
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify(sanitizeResult))
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
-};
+}
