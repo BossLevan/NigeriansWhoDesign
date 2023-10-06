@@ -1,160 +1,112 @@
-import Head from "next/head";
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Nav from "../components/Nav.js";
-import Filter from "../components/Filter.js";
-import Title from "../components/Title.js";
-import MetaTags from "../components/Metatags.js";
-import Analytics from "../components/Analytics.js";
-import FilterSVG from "../components/Icons/FilterSVG.js";
-import { google } from "googleapis";
-import Image from "next/image.js";
-
-const getDesigners = async () => {
-  const auth = new google.auth.GoogleAuth({
-    credentials: {
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join(
-        "\n"
-      )
-    },
-    scopes: [
-      "https://www.googleapis.com/auth/drive",
-      "https://www.googleapis.com/auth/drive.file",
-      "https://www.googleapis.com/auth/spreadsheets"
-    ]
-  });
-
-  const sheets = google.sheets({
-    auth,
-    version: "v4"
-  });
-
-  // Replace the spreadsheetId with your spreadsheet ID.
-  // Replace the range with the tab name.
-  // Issues with permissions look at this guide: https://leerob.io/snippets/google-sheets
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: "1A4X_3PoAeM836ikeBvqc7QPmt-M8IzjfFNuBz5g-42s",
-    range: "Designers" // sheet name
-  });
-
-  //TODO: Map the collum to object name automatically.
-  const rows = response.data.values;
-  const db = rows.map((row) => ({
-    name: row[0],
-    location: row[1],
-    expertise: row[2],
-    link: row[3],
-    approved: row[4],
-    featured: row[5]
-  }));
-
-  let sanitizeResult = db.filter(
-    (item) => item.name != "" && item.approved == "Yes"
-  );
-
-  return JSON.stringify(sanitizeResult);
-};
+import Head from 'next/head'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Nav from '../components/Nav.js'
+import Filter from '../components/Filter.js'
+import Title from '../components/Title.js'
+import MetaTags from '../components/Metatags.js'
+import Analytics from '../components/Analytics.js'
+import FilterSVG from '../components/Icons/FilterSVG.js'
+import { google } from 'googleapis'
+import Image from 'next/image.js'
 
 export async function getStaticProps() {
   const origin =
-    process.env.NODE_ENV !== "production"
-      ? "http://localhost:3000/"
+    process.env.NODE_ENV !== 'production'
+      ? 'http://localhost:3000/'
       : //TODO: Replace to the final domain
-        "https://argentinians-who-design.vercel.app/";
+        'https://argentinians-who-design.vercel.app/'
 
-  console.log(origin);
+  console.log(origin)
 
-  const res = await getDesigners();
-  const designers = await JSON.parse(res);
+  const res = await getDesigners()
+  const designers = await JSON.parse(res)
 
-  let uniqueExpertise = new Set();
-  designers.map((d) => uniqueExpertise.add(d.expertise));
+  let uniqueExpertise = new Set()
+  designers.map((d) => uniqueExpertise.add(d.expertise))
 
-  let uniqueLocation = new Set();
-  designers.map((d) => uniqueLocation.add(d.location));
+  let uniqueLocation = new Set()
+  designers.map((d) => uniqueLocation.add(d.location))
 
   let expertises = Array.from(uniqueExpertise).map((e) => {
-    return { label: e, active: false, category: "expertise" };
-  });
+    return { label: e, active: false, category: 'expertise' }
+  })
 
   let locations = Array.from(uniqueLocation)
     .sort()
     .map((e) => {
-      return { label: e, active: false, category: "location" };
-    });
+      return { label: e, active: false, category: 'location' }
+    })
 
-  let filters = expertises.concat(locations);
+  let filters = expertises.concat(locations)
 
   return {
     props: {
       designers,
-      filters
+      filters,
     },
 
-    revalidate: 500 // 5 days in seconds
-  };
+    revalidate: 500, // 5 days in seconds
+  }
 }
 
 export default function Home({ designers, filters }) {
-  const [isReady, setIsReady] = useState(false);
-  const [designersList, setDesignersList] = useState(null);
-  const [filterIsOpen, setFilterIsOpen] = useState(false);
-  const [filterList, setFilterList] = useState(filters);
-  const [filterCategory, setFilterCategory] = useState(null);
+  const [isReady, setIsReady] = useState(false)
+  const [designersList, setDesignersList] = useState(null)
+  const [filterIsOpen, setFilterIsOpen] = useState(false)
+  const [filterList, setFilterList] = useState(filters)
+  const [filterCategory, setFilterCategory] = useState(null)
 
   useEffect(() => {
-    setDesignersList(shuffle(designers).sort((a, b) => a.order - b.order));
-  }, []);
+    setDesignersList(shuffle(designers).sort((a, b) => a.order - b.order))
+  }, [])
 
   // Filter
   const handleCloseFilter = (e) => {
-    setFilterIsOpen(false);
+    setFilterIsOpen(false)
 
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  };
+    e.preventDefault()
+    e.stopPropagation()
+    return false
+  }
 
   const handleOpenFilter = (category) => {
-    setFilterCategory(category);
-    setFilterIsOpen(true);
-  };
+    setFilterCategory(category)
+    setFilterIsOpen(true)
+  }
 
   const clearFilter = () => {
     let newFilter = filters.map(({ label }) => {
-      return { label: label, active: false };
-    });
+      return { label: label, active: false }
+    })
 
-    setFilterList(newFilter);
-    setDesignersList(
-      shuffle(designers).sort((a, b) => a.featured - b.featured)
-    );
-  };
+    setFilterList(newFilter)
+    setDesignersList(shuffle(designers).sort((a, b) => a.featured - b.featured))
+  }
 
   const handleFilterClick = (item) => {
-    let indexof = filterList.indexOf(item);
-    filterList[indexof].active = filterList[indexof].active ? false : true;
-    setFilterList(filterList);
+    let indexof = filterList.indexOf(item)
+    filterList[indexof].active = filterList[indexof].active ? false : true
+    setFilterList(filterList)
 
     // Get Each column
     let filterExpert = filterList
-      .filter((f) => f.category == "expertise")
-      .map((d) => d.label);
+      .filter((f) => f.category == 'expertise')
+      .map((d) => d.label)
     let filterLocation = filterList
-      .filter((f) => f.category == "location")
-      .map((d) => d.label);
+      .filter((f) => f.category == 'location')
+      .map((d) => d.label)
 
     // Find active
     let activeFilters = filterList
       .filter((d) => d.active == true)
-      .map((d) => d.label);
+      .map((d) => d.label)
 
     // If none in that category check all
     if (filterExpert.filter((f) => activeFilters.includes(f)).length <= 0)
-      activeFilters = activeFilters.concat(filterExpert);
+      activeFilters = activeFilters.concat(filterExpert)
     if (filterLocation.filter((f) => activeFilters.includes(f)).length <= 0)
-      activeFilters = activeFilters.concat(filterLocation);
+      activeFilters = activeFilters.concat(filterLocation)
 
     // Filter render list
     if (activeFilters.length > 0)
@@ -162,17 +114,17 @@ export default function Home({ designers, filters }) {
         designers.filter(
           (d) =>
             activeFilters.includes(d.expertise) &&
-            activeFilters.includes(d.location)
-        )
-      );
-    else clearFilter();
-  };
+            activeFilters.includes(d.location),
+        ),
+      )
+    else clearFilter()
+  }
 
   return (
     <div
       className="container"
       style={{
-        overflow: isReady ? "hidden" : "visible"
+        overflow: isReady ? 'hidden' : 'visible',
       }}
     >
       <Head>
@@ -211,7 +163,7 @@ export default function Home({ designers, filters }) {
           designers={designersList}
           handleOpenFilter={handleOpenFilter}
           onClick={filterIsOpen ? handleCloseFilter : undefined}
-          className={filterIsOpen ? "filterIsOpen" : ""}
+          className={filterIsOpen ? 'filterIsOpen' : ''}
         />
       ) : null}
 
@@ -231,30 +183,30 @@ export default function Home({ designers, filters }) {
       <style global jsx>{`
         html,
         body {
-          overflow: ${filterIsOpen ? "hidden" : "auto"};
+          overflow: ${filterIsOpen ? 'hidden' : 'auto'};
         }
       `}</style>
     </div>
-  );
+  )
 }
 
 function Content({ designers, handleOpenFilter, className, onClick }) {
-  const tableHeaderRef = useRef();
+  const tableHeaderRef = useRef()
 
   useEffect(() => {
-    const header = tableHeaderRef.current;
-    const sticky = header.getBoundingClientRect().top + 40;
-    const scrollCallBack = window.addEventListener("scroll", () => {
+    const header = tableHeaderRef.current
+    const sticky = header.getBoundingClientRect().top + 40
+    const scrollCallBack = window.addEventListener('scroll', () => {
       if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
+        header.classList.add('sticky')
       } else {
-        header.classList.remove("sticky");
+        header.classList.remove('sticky')
       }
-    });
+    })
     return () => {
-      window.removeEventListener("scroll", scrollCallBack);
-    };
-  }, []);
+      window.removeEventListener('scroll', scrollCallBack)
+    }
+  }, [])
 
   return (
     <div className={className} onClick={onClick}>
@@ -274,9 +226,9 @@ function Content({ designers, handleOpenFilter, className, onClick }) {
               <td
                 className="thsize-aux dn filterTable"
                 onClick={(e) => {
-                  handleOpenFilter("location");
+                  handleOpenFilter('location')
 
-                  e.preventDefault();
+                  e.preventDefault()
                 }}
               >
                 From <FilterSVG />
@@ -284,9 +236,9 @@ function Content({ designers, handleOpenFilter, className, onClick }) {
               <td
                 className="thsize-aux filterTable"
                 onClick={(e) => {
-                  handleOpenFilter("expertise");
+                  handleOpenFilter('expertise')
 
-                  e.preventDefault();
+                  e.preventDefault()
                 }}
               >
                 Expertise <FilterSVG />
@@ -377,20 +329,20 @@ function Content({ designers, handleOpenFilter, className, onClick }) {
 
       <Analytics />
     </div>
-  );
+  )
 }
 
 function shuffle(array) {
   var m = array.length,
     temp,
-    i;
+    i
 
   while (m) {
-    i = Math.floor(Math.random() * m--);
-    temp = array[m];
-    array[m] = array[i];
-    array[i] = temp;
+    i = Math.floor(Math.random() * m--)
+    temp = array[m]
+    array[m] = array[i]
+    array[i] = temp
   }
 
-  return array;
+  return array
 }
