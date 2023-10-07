@@ -1,17 +1,17 @@
-import Head from "next/head";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import Title from "../components/Title.js";
-import MetaTags from "../components/Metatags.js";
-import Analytics from "../components/Analytics.js";
+import Head from 'next/head'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import Title from '../components/Title.js'
+import MetaTags from '../components/Metatags.js'
+import Analytics from '../components/Analytics.js'
 
 const item = {
-  hidden: { opacity: 0, y: "15%" },
-  show: { opacity: 1, y: "0%" },
+  hidden: { opacity: 0, y: '15%' },
+  show: { opacity: 1, y: '0%' },
   transition: {
-    easing: "easeInOut",
+    easing: 'easeInOut',
   },
-};
+}
 
 const container = {
   hidden: { opacity: 0 },
@@ -21,13 +21,13 @@ const container = {
       staggerChildren: 0.15,
     },
   },
-};
+}
 
 export default function Home({ designers }) {
   return (
     <div className="container">
       <Head>
-        <title>Brazilians Who Design | About</title>
+        <title>Nigerians Who Design | About</title>
         <link rel="icon" href="/favicon.ico" />
         <MetaTags />
       </Head>
@@ -38,7 +38,7 @@ export default function Home({ designers }) {
 
       <Title
         className="title m0 p0"
-        text="Brazilians*who&nbsp;design&nbsp;is&nbsp;a"
+        text="Nigerians*who&nbsp;design&nbsp;is&nbsp;a"
         noAnimation
       />
 
@@ -49,15 +49,15 @@ export default function Home({ designers }) {
         exit="hidden"
       >
         <p className="f1 extend">
-          <motion.span variants={item}>place to showcase</motion.span>{" "}
-          <motion.span variants={item}>the work of talented</motion.span>{" "}
-          <motion.span variants={item}>Brazilian designers to</motion.span>{" "}
-          <motion.span variants={item}>the world. The goal</motion.span>{" "}
-          <motion.span variants={item}>is to inspire new</motion.span>{" "}
-          <motion.span variants={item}>designers to diversify</motion.span>{" "}
+          <motion.span variants={item}>place to showcase</motion.span>{' '}
+          <motion.span variants={item}>the work of talented</motion.span>{' '}
+          <motion.span variants={item}>Nigerian designers to</motion.span>{' '}
+          <motion.span variants={item}>the world. The goal</motion.span>{' '}
+          <motion.span variants={item}>is to inspire new</motion.span>{' '}
+          <motion.span variants={item}>designers to diversify</motion.span>{' '}
           <motion.span variants={item}>
             their references, experienced designers
-          </motion.span>{" "}
+          </motion.span>{' '}
           <motion.span variants={item}>
             to diversity their network, and companies to diversify their teams.
           </motion.span>
@@ -68,11 +68,11 @@ export default function Home({ designers }) {
         <div className="col-left">
           <h3>How can I nominate someone?</h3>
           <p>
-            If you know a Brazilian designer whose work or voice is valuable to
-            the design industry, please{" "}
+            If you know a Nigerian designer whose work or voice is valuable to
+            the design industry, please{' '}
             <Link href="/nominate">
               <a className="link">fill out this form</a>
-            </Link>{" "}
+            </Link>{' '}
             with their information and a few words about why you're nominating
             them. You can choose to link to their portfolio, to their Linkedin,
             or to other social profiles — any link that you feel best represents
@@ -84,7 +84,7 @@ export default function Home({ designers }) {
 
           <h3>Why are featuring artists as well?</h3>
           <p>
-            We wanted to showcase not only contemporary Brazilian design, but
+            We wanted to showcase not only contemporary Nigerian design, but
             also leverage all the visibility that this project is getting to
             celebrate the history of design in our country. Every time you
             reload the website there’s a new featured Brazilian designer you can
@@ -151,17 +151,17 @@ export default function Home({ designers }) {
 
           <h3>How did you build this?</h3>
           <p>
-            Brazilians Who Design is{" "}
+            Brazilians Who Design is{' '}
             <a
               className="link"
               target="_blank"
               href="https://github.com/zehfernandes/brazilianswhodesign"
             >
               open source
-            </a>{" "}
+            </a>{' '}
             for you create your own showcase. It is built inspired by the tech
             stack that Jules Forrest kindly made available on Github after
-            building{" "}
+            building{' '}
             <a
               className="link"
               target="_blank"
@@ -299,5 +299,5 @@ export default function Home({ designers }) {
         }
       `}</style>
     </div>
-  );
+  )
 }
