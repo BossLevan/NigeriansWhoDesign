@@ -1,4 +1,4 @@
-# Brazilians Who Design
+# Nigerians Who Design
 
 ![](https://www.dropbox.com/s/x5udk39ad57ayp5/brazilianswhodesignthumb.png?raw=1)
 
