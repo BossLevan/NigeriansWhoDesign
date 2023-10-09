@@ -7,7 +7,6 @@ import Title from '../components/Title.js'
 import MetaTags from '../components/Metatags.js'
 import Analytics from '../components/Analytics.js'
 import FilterSVG from '../components/Icons/FilterSVG.js'
-import { google } from 'googleapis'
 import Image from 'next/image.js'
 
 export async function getStaticProps() {
