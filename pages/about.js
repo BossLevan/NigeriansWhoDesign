@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Title from '../components/Title.js'
 import MetaTags from '../components/Metatags.js'
 import Analytics from '../components/Analytics.js'
+import { useState } from 'react'
 
 const item = {
   hidden: { opacity: 0, y: '15%' },
@@ -24,6 +25,8 @@ const container = {
 }
 
 export default function Home({ designers }) {
+  const [copied, setCopied] = useState(false)
+
   return (
     <div className="container">
       <Head>
@@ -59,8 +62,14 @@ export default function Home({ designers }) {
             their references, experienced designers
           </motion.span>{' '}
           <motion.span variants={item}>
-            to diversity their network, and companies to diversify their teams.
-          </motion.span>
+            aiming to inspire new designers{' '}
+          </motion.span>{' '}
+          <motion.span variants={item}>to broaden their horizons, </motion.span>{' '}
+          <motion.span variants={item}>experienced designers </motion.span>{' '}
+          <motion.span variants={item}>to expand their networks, </motion.span>{' '}
+          <motion.span variants={item}>
+            and companies to diversify their teams.
+          </motion.span>{' '}
         </p>
       </motion.div>
 
@@ -78,72 +87,125 @@ export default function Home({ designers }) {
             or to other social profiles — any link that you feel best represents
             how that person is making a difference in the industry. We decided
             not to collect or display the designer’s photo because we wanted the
-            repository to be less about what someone looks like and more about
-            how they’re making an impact in the industry.
+            directory to be less about what someone looks like and more about
+            what they do.
           </p>
 
-          <h3>Why are featuring artists as well?</h3>
+          <h3>Why are we featuring artists as well?</h3>
           <p>
             We wanted to showcase not only contemporary Nigerian design, but
             also leverage all the visibility that this project is getting to
             celebrate the history of design in our country. Every time you
-            reload the website there’s a new featured Brazilian designer you can
-            learn more about.
+            reload the website, you can learn more about a newly featured
+            Argentinian designer.
           </p>
 
           <h3>How did you come up with this idea?</h3>
-          <p>
-            We didn’t. This project is inspired by our fantastic sibling sites:
+          <p className="m0">
+            We didn’t. Our fantastic sibling sites inspire this project:
           </p>
           <ul>
             <li>
-              <a className="link" href="https://womenwho.design/">
+              <a
+                className="link"
+                href="https://brazilianswho.design/"
+                target="_blank"
+              >
+                Brazilians Who Design
+              </a>
+            </li>
+
+            <li>
+              <a
+                className="link"
+                href="https://uruguayanswho.design/"
+                target="_blank"
+              >
+                Uruguayans Who Design
+              </a>
+            </li>
+
+            <li>
+              <a
+                className="link"
+                href="https://dutchwho.design/"
+                target="_blank"
+              >
+                Dutch Who Design
+              </a>
+            </li>
+
+            <li>
+              <a
+                className="link"
+                href="https://womenwho.design/"
+                target="_blank"
+              >
                 Women Who Design
               </a>
             </li>
             <li>
-              <a className="link" href="https://www.womenwhodraw.com/">
+              <a
+                className="link"
+                href="https://www.womenwhodraw.com/"
+                target="_blank"
+              >
                 Women Who Draw
               </a>
             </li>
             <li>
-              <a className="link" href="http://www.28blacks.com/">
+              <a
+                className="link"
+                href="http://www.28blacks.com/"
+                target="_blank"
+              >
                 28 Black Designers
               </a>
             </li>
             <li>
-              <a className="link" href="https://www.latinxswhodesign.com/">
+              <a
+                className="link"
+                href="https://www.latinxswhodesign.com/"
+                target="_blank"
+              >
                 Latinx Who Design
               </a>
             </li>
             <li>
-              <a className="link" href="https://queerdesign.club/">
+              <a
+                className="link"
+                href="https://queerdesign.club/"
+                target="_blank"
+              >
                 Queer Design Club
               </a>
             </li>
+
             <li>
               <a
                 className="link"
-                href="https://filipinos-who-design.webflow.io/"
+                href="https://spaniardswho.design/"
+                target="_blank"
               >
-                Filipinos Who Design
+                Spaniards Who Design
               </a>
             </li>
+
             <li>
               <a
                 className="link"
-                href="https://filipinos-who-design.webflow.io/"
+                href="https://indianswhodesign.in/"
+                target="_blank"
               >
-                People Of Craft
-              </a>
-            </li>
-            <li>
-              <a className="link" href="https://indianswhodesign.in/">
                 Indians Who Design
               </a>
             </li>
             <li>
-              <a className="link" href="https://www.apiwho.design/">
+              <a
+                className="link"
+                href="https://www.apiwho.design/"
+                target="_blank"
+              >
                 Asian & Pacific Islanders Who Design
               </a>
             </li>
@@ -151,11 +213,11 @@ export default function Home({ designers }) {
 
           <h3>How did you build this?</h3>
           <p>
-            Brazilians Who Design is{' '}
+            Argentinians Who Design is{' '}
             <a
               className="link"
               target="_blank"
-              href="https://github.com/zehfernandes/brazilianswhodesign"
+              href="https://github.com/andreuscafe/ArgentiniansWhoDesign"
             >
               open source
             </a>{' '}
@@ -167,68 +229,88 @@ export default function Home({ designers }) {
               target="_blank"
               href="https://github.com/julesforrest/womenwhodesign"
             >
-              Women Who Design.
+              GitHub
             </a>
-            <br />
-            <br />
-            Sites built using our open-source platform:
           </p>
-          <ul>
-            <li>
-              <a className="link" href="https://uruguayanswho.design/">
-                uruguayanswho.design
-              </a>
-            </li>
-            <li>
-              <a className="link" href="https://spaniardswho.design/">
-                spaniardswho.design
-              </a>
-            </li>
-            <li>
-              <a className="link" href="https://britswho.design/">
-                britswho.design
-              </a>
-            </li>
-          </ul>
-          <br />
-          <p>
-            Thanks to Caio Braga, Rafael Frota, Karina Sirqueira, Al Lucca,
-            Bruno Oyama, Fabio Sasso, Daniel Furtado, Rodrigo Muniz, Lucas
-            Falcão, for the help of gathering the initial list of designers.
-          </p>
-
-          <h3>Who’s behind this?</h3>
-          <ul>
-            <li>
-              <a className="link" href="https://twitter.com/zehf">
-                Zeh Fernandes
-              </a>
-            </li>
-            <li>
-              <a className="link" href="http://twitter.com/fabriciot">
-                Fabricio Teixeira
-              </a>
-            </li>
-            <li>
-              <a className="link" href="http://uxdesign.cc/">
-                UX Collective
-              </a>
-            </li>
-          </ul>
         </div>
         <div className="col-right">
           <h3>How can I remove my name?</h3>
           <p>
-            If you’ve been added to the directory and would like to opt-out or
-            make an edit to your profile, please send us a message at
-            hello@uxdesign.cc.
+            If you have been added to the directory and would like to opt-out or
+            make an edit to your profile, please send us a message at{' '}
+            {/* when you click the link, it should copy the email to clipboard */}
+            <span
+              className="link copy"
+              href="#"
+              onClick={() => {
+                setCopied(true)
+                navigator.clipboard.writeText('hello@argentinianswho.design')
+
+                setTimeout(() => {
+                  setCopied(false)
+                }, 2000)
+              }}
+            >
+              hello@argentinianswho.design
+            </span>{' '}
+            <AnimatePresence exitBeforeEnter>
+              {copied && (
+                <motion.span
+                  initial={{
+                    opacity: 0,
+                    x: -10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: -10,
+                  }}
+                  className="copy-tooltip"
+                >
+                  Copied!
+                </motion.span>
+              )}
+            </AnimatePresence>
           </p>
-          <h3>Why is my nomination taking so long to show?</h3>
+
+          <h3>Don´t be shy</h3>
           <p>
-            We update this website once a week to include new names. To ensure a
-            healthy gender balance on this website, some nominations might take
-            longer to appear. In the meantime, try nominating a designer who
-            identifies as a woman or non-binary.
+            If you’re part of the list and want to help us out, just share the
+            link on your social media platforms and spread the word about our
+            community and tell everyone how proud you’re to be Argentinian and a
+            designer.
+          </p>
+
+          <h3>Who’s behind this?</h3>
+          <p>
+            Argentinians Who Design is brought to you by{' '}
+            <a
+              href="https://twitter.com/andreuscafe"
+              target={'_blank'}
+              className="link"
+            >
+              @andreuscafe
+            </a>
+            and{' '}
+            <a
+              href="https://twitter.com/facumontanaro_"
+              target={'_blank'}
+              className="link"
+            >
+              @facumontanaro_
+            </a>
+            . If you want to help us keep the project going, you can send a{' '}
+            <a
+              href="https://cafecito.app/argentiniansdesign"
+              target={'_blank'}
+              className="link"
+            >
+              Cafecito
+            </a>{' '}
+            donation to keep everything running (domain, mail, host, etc).
           </p>
         </div>
 
@@ -243,9 +325,6 @@ export default function Home({ designers }) {
 
         .moreabout {
           font-weight: normal;
-          font-size: 1.5rem;
-          line-height: 140%;
-          letter-spacing: 0.01em;
           display: flex;
           margin-top: 8rem;
         }
@@ -262,20 +341,9 @@ export default function Home({ designers }) {
           padding-right: 3rem;
         }
 
-        .moreabout p {
-          margin: 0;
-          padding: 0;
+
         }
 
-        .moreabout h3 {
-          padding: 0;
-          margin: 0;
-          font-size: 1.5rem;
-        }
-
-        .moreabout h3 {
-          margin: 4rem 0 0 0;
-        }
 
         ul,
         li {
@@ -284,6 +352,10 @@ export default function Home({ designers }) {
           list-style: none;
           margin-top: 0.3rem;
         }
+
+ul{
+  margin: 0.3rem 0 4rem 0;
+}
 
         @media (max-width: 480px) {
           .moreabout {

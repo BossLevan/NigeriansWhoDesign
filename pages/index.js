@@ -7,6 +7,8 @@ import Title from '../components/Title.js'
 import MetaTags from '../components/Metatags.js'
 import Analytics from '../components/Analytics.js'
 import FilterSVG from '../components/Icons/FilterSVG.js'
+import { google } from 'googleapis'
+import Image from 'next/image.js'
 
 export async function getStaticProps() {
   const origin =
@@ -124,10 +126,35 @@ export default function Home({ designers, filters }) {
       }}
     >
       <Head>
-        <title>Nigerians Who Design</title>
-        <link id="favicon" rel="alternate icon" href="/favicon.ico" />
+        <title>Argentinians Who Design</title>
+        <link id="favicon" rel="alternate icon" href="/favicon.png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff5c00" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+
         <MetaTags />
       </Head>
+
+      <div className="sol">
+        <div className="normal">
+          <Image
+            src="/img/sol.svg"
+            alt="Argentina"
+            width={96}
+            height={96}
+            priority
+          />
+        </div>
+        <div className="wink">
+          <Image
+            src="/img/sol_guino.svg"
+            alt="Argentina"
+            width={96}
+            height={96}
+            priority
+          />
+        </div>
+      </div>
 
       {!isReady ? (
         <Content
@@ -142,9 +169,11 @@ export default function Home({ designers, filters }) {
         {filterIsOpen ? (
           <Filter
             items={filterList.filter((f) => f.category == filterCategory)}
+            filterList={filterList}
             handleFilterClick={handleFilterClick}
             handleCloseFilter={handleCloseFilter}
             categoryName={filterCategory}
+            key="filter"
           />
         ) : null}
       </AnimatePresence>
@@ -200,7 +229,7 @@ function Content({ designers, handleOpenFilter, className, onClick }) {
                   e.preventDefault()
                 }}
               >
-                Location <FilterSVG />
+                From <FilterSVG />
               </td>
               <td
                 className="thsize-aux filterTable"
@@ -271,6 +300,15 @@ function Content({ designers, handleOpenFilter, className, onClick }) {
           padding-top: 0.6em;
           color: inherit;
           display: inline-block;
+          font-weight: 500;
+        }
+
+        tbody tr {
+          transition: all 0.2s ease-in-out;
+        }
+
+        tbody tr:hover {
+          color: rgba(255, 255, 255, 0.8);
         }
 
         table tbody td {

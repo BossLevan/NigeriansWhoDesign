@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600&display=swap");
+
 html {
   box-sizing: border-box;
 }
@@ -8,17 +10,18 @@ html {
 }
 
 body {
-  font-family: "Helvetica Now Display", "Helvetica Neue", "Helvetica";
-  background: #000;
-  color: #fff;
-  font-weight: 500;
+  font-family: "Figtree", sans-serif;
+  font-size: 20px;
+  line-height: 1.5rem;
+  background: #fff;
+  color: #000;
   margin: 0;
   padding: 0;
 }
 
 .container {
-  width: 95vw;
-  margin: 3rem auto;
+  width: 100%;
+  padding: 2rem;
   position: relative;
 }
 
@@ -26,16 +29,38 @@ a {
   text-decoration: none;
 }
 
+.moreabout a:hover,
+.moreabout span.link:hover {
+  color: #999999;
+}
+
 /* Type 
  ----------------------------- */
 
 h1,
 .f1 {
-  font-size: 5.625rem;
-  letter-spacing: -0.03em;
-  line-height: 100%;
-  font-weight: 500;
-  font-feature-settings: "ss08" on, "ss02" on, "ss01" on, "salt" on, "cpsp" on;
+  font-size: 4.5em;
+  line-height: 1.2em;
+  /* letter-spacing: -0.03em; */
+  font-weight: 600;
+  letter-spacing: 0px;
+  /* font-feature-settings: "ss08" on, "ss02" on, "ss01" on, "salt" on, "cpsp" on; */
+}
+
+h3 {
+  font-size: 1.2em;
+  line-height: 1.5em;
+  font-weight: 600;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0px;
+}
+
+p {
+  margin: 0.25rem 0 4rem 0;
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 /* Utils 
@@ -53,10 +78,14 @@ table {
   width: 100%;
 }
 
+table a {
+  font-weight: 600;
+}
+
 table tbody td,
 table thead td {
   border: none;
-  border-bottom: 1px solid #363636;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 table.large thead {
@@ -68,12 +97,13 @@ table.large tbody {
 }
 
 table tbody tr {
+  background: #fff;
   cursor: pointer;
   transition: background 150ms ease-in-out;
 }
 
 table tbody tr:hover {
-  background: #111111;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Rethink is the best aproch */
@@ -93,17 +123,34 @@ table tbody tr:last-child td {
 /* General 
  ----------------------------- */
 
+.sol {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+.sol .wink {
+  display: none;
+}
+
+.sol:hover .wink {
+  display: block;
+}
+
+.sol:hover .normal {
+  display: none;
+}
+
 .letter {
   display: inline-block;
 }
 
-.title {
-  padding-top: 26vh;
+.letter:nth-child(-n + 12) {
+  color: #74acdf;
 }
 
-.auxNav {
-  position: absolute;
-  top: 0;
+.title {
+  padding-top: 26vh;
 }
 
 .extend span {
@@ -117,52 +164,74 @@ table tbody tr:last-child td {
 }
 
 .arrowback {
-  color: #fff;
   font-size: 3rem;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
   transition: transform 200ms ease;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
 }
 
 .arrowback:hover {
   transform: rotate(35deg);
 }
 
-a.link {
-  --color: #fff;
+a.link,
+span.copy {
+  color: currentColor;
   position: relative;
-  color: var(--color);
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  transition: color 150ms ease;
+  transition: all 150ms ease;
+  cursor: pointer;
 }
 
-p a.link {
-  display: inline-block;
-  vertical-align: text-bottom;
-}
-
-a.link:before {
-  width: 100%;
-  height: 90%;
+a.link:before,
+span.link:before {
   content: "";
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
   position: absolute;
-  background-size: 1px 1em;
-  background-size: 1px 1em;
-  box-shadow: inset 0 -0.05em var(--color), inset 0 -0.1em #000;
-  transition: box-shadow 150ms ease;
-  transform-origin: 0% 0%;
+  bottom: 0;
 }
 
-a.link:hover {
-  --color: #757575;
+a.link[target="_blank"] {
+  margin-right: 0.8em;
 }
 
-a.link:after {
-  content: " ↗";
-  transition: transform 150ms ease;
+a.link[target="_blank"]:after {
+  content: "→";
+  position: absolute;
+  right: -1.2em;
+  top: 50%;
+  transform: translateY(-42.5%) rotate(-45deg);
+  font-size: 0.65em;
+}
+
+span.copy {
+  display: inline-block;
+  margin-right: 0.8em;
+}
+
+span.copy:after {
+  content: "⎘";
+  position: absolute;
+  right: -0.75em;
+  top: 50%;
+  transform: translateY(-45%);
+  font-size: 1em;
+}
+
+.copy-tooltip {
+  background-color: #191919;
+  color: #5e5e5e;
+  padding: 0 0.5rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+  font-size: 0.75em;
+  line-height: 1.5em;
 }
 
 .sticky {
@@ -171,10 +240,10 @@ a.link:after {
 .sticky tr {
   position: fixed;
   width: 95vw;
-  background: #000;
+  background: #fff;
   padding: 1.5rem 0 1rem 0;
   display: table;
-  top: -4rem;
+  top: -5rem;
   transform: translateY(4rem);
   transition: transform 400ms ease-out;
 }
@@ -184,10 +253,19 @@ a.link:after {
 
 .check svg {
   opacity: 0;
+  transform: translateY(20%);
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
 
-.check.active svg {
+.check.checked {
+  position: relative;
+}
+
+.check.checked svg {
   opacity: 1;
+  transform: translateY(0);
+  position: absolute;
+  width: 100%;
 }
 
 .filterIsOpen {
@@ -202,7 +280,7 @@ a.link:after {
 
 /* Responsive
  ----------------------------- */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   :root {
     font-size: 12px;
   }
@@ -213,7 +291,15 @@ a.link:after {
     letter-spacing: -0.02em;
   }
 
+  svg {
+    fill: #000;
+  }
+
   .dn {
+    display: none;
+  }
+
+  .sol {
     display: none;
   }
 
@@ -237,5 +323,47 @@ a.link:after {
 @media (min-width: 1600px) {
   :root {
     font-size: 18px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  svg {
+    fill: #fff;
+  }
+
+  .arrowback:not(.nominate) {
+    color: #fff;
+  }
+
+  a.link {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    -moz-transition: color 0.15s ease;
+    transition: color 0.15s ease;
+  }
+
+  .sticky tr {
+    background: #000;
+  }
+
+  table tbody td,
+  table thead td {
+    border: none;
+    border-bottom: 1px solid #363636;
+  }
+
+  table tbody tr {
+    background: #000;
+  }
+
+  table tbody tr:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
   }
 }

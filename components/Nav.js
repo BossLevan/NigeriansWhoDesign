@@ -13,6 +13,11 @@ export default function Nav(props) {
           <a>Nominate</a>
         </Link>
       </li>
+      <li>
+        <Link href="https://cafecito.app/argentiniansdesign">
+          <a target="_blank">Donate</a>
+        </Link>
+      </li>
 
       <style jsx>{`
         ul {
@@ -27,13 +32,23 @@ export default function Nav(props) {
         }
 
         ul li a {
-          color: #fff;
+          color: #111;
           text-decoration: none;
           transition: color 150ms ease;
         }
 
         ul li a:hover {
-          color: #757575;
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+        @media (prefers-color-scheme: dark) {
+          ul li a {
+            color: #fff;
+          }
+
+          ul li a:hover {
+            color: rgba(255, 255, 255, 0.5);
+          }
         }
       `}</style>
     </ul>
