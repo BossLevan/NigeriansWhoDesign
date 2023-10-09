@@ -23,7 +23,7 @@ export default async (req, res) => {
     // Replace the range with the tab name.
     // Issues with permissions look at this guide: https://leerob.io/snippets/google-sheets
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: '1hS_5Lav5erNQMzyOPG-CB2eD_6YGwCOM4OmGpf1jnbY',
+      spreadsheetId: '',
       range: 'Designers', // sheet name
     })
 
