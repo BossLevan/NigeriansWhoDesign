@@ -60,9 +60,7 @@ export default function Nominate({ designers }) {
         id={scriptId}
         src="https://tally.so/widgets/embed.js"
         onLoad={() => {
-          console.log('klkel')
           Tally.loadEmbeds()
-          console.log(Tally.loadEmbeds())
         }}
       />
     </div>

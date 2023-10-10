@@ -97,7 +97,7 @@ export default function Home({ designers }) {
             also leverage all the visibility that this project is getting to
             celebrate the history of design in our country. Every time you
             reload the website, you can learn more about a newly featured
-            Argentinian designer.
+            Nigerian designer.
           </p>
 
           <h3>How did you come up with this idea?</h3>
@@ -213,11 +213,11 @@ export default function Home({ designers }) {
 
           <h3>How did you build this?</h3>
           <p>
-            Argentinians Who Design is{' '}
+            Nigerians Who Design is{' '}
             <a
               className="link"
               target="_blank"
-              href="https://github.com/andreuscafe/ArgentiniansWhoDesign"
+              href="https://github.com/BossLevan/NigeriansWhoDesign"
             >
               open source
             </a>{' '}
@@ -237,21 +237,21 @@ export default function Home({ designers }) {
           <h3>How can I remove my name?</h3>
           <p>
             If you have been added to the directory and would like to opt-out or
-            make an edit to your profile, please send us a message at{' '}
+            make an edit to your profile, please send me a message at{' '}
             {/* when you click the link, it should copy the email to clipboard */}
             <span
               className="link copy"
               href="#"
               onClick={() => {
                 setCopied(true)
-                navigator.clipboard.writeText('hello@argentinianswho.design')
+                navigator.clipboard.writeText('hello@nigerianswho.design')
 
                 setTimeout(() => {
                   setCopied(false)
                 }, 2000)
               }}
             >
-              hello@argentinianswho.design
+              kosi@nigeriianswho.design
             </span>{' '}
             <AnimatePresence exitBeforeEnter>
               {copied && (
@@ -280,37 +280,23 @@ export default function Home({ designers }) {
           <p>
             If you’re part of the list and want to help us out, just share the
             link on your social media platforms and spread the word about our
-            community and tell everyone how proud you’re to be Argentinian and a
+            community and tell everyone how proud you’re to be Nigerian and a
             designer.
           </p>
 
           <h3>Who’s behind this?</h3>
           <p>
-            Argentinians Who Design is brought to you by{' '}
+            Nigerians Who Design is brought to you by{' '}
             <a
-              href="https://twitter.com/andreuscafe"
+              href="https://twitter.com/kosianyaegbuna"
               target={'_blank'}
               className="link"
             >
-              @andreuscafe
+              @kosianyaegbuna
             </a>
-            and{' '}
-            <a
-              href="https://twitter.com/facumontanaro_"
-              target={'_blank'}
-              className="link"
-            >
-              @facumontanaro_
-            </a>
-            . If you want to help us keep the project going, you can send a{' '}
-            <a
-              href="https://cafecito.app/argentiniansdesign"
-              target={'_blank'}
-              className="link"
-            >
-              Cafecito
-            </a>{' '}
-            donation to keep everything running (domain, mail, host, etc).
+            . If you want to help keep the project going, you can send a DM to
+            send a donation to help keep everything running (domain, mail, host,
+            etc), collaborate or to just have a chat.
           </p>
         </div>
 

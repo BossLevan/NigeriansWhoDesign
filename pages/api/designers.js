@@ -49,3 +49,5 @@ export default async (req, res) => {
     console.log(err)
   }
 }
+
+//google-site-verification=7bPDm8YMwzbPZWY8_rPA3MpT6CzrQ6feavk2Prq-xEE

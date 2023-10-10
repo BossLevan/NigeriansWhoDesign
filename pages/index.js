@@ -13,7 +13,7 @@ export async function getStaticProps() {
   const origin =
     process.env.NODE_ENV !== 'production'
       ? 'http://localhost:3000'
-      : 'https://brazilianswho.design/'
+      : 'https://nigeriianswho.design/'
 
   console.log(origin)
 
@@ -125,7 +125,7 @@ export default function Home({ designers, filters }) {
       }}
     >
       <Head>
-        <title>Argentinians Who Design</title>
+        <title>Nigerian Who Design</title>
         <link id="favicon" rel="alternate icon" href="/favicon.png" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff5c00" />
         <meta name="msapplication-TileColor" content="#da532c" />
@@ -137,19 +137,19 @@ export default function Home({ designers, filters }) {
       <div className="sol">
         <div className="normal">
           <Image
-            src="/img/sol.svg"
-            alt="Argentina"
-            width={96}
-            height={96}
+            src="/img/nigeria.png"
+            alt="Nigeria"
+            width={156}
+            height={130}
             priority
           />
         </div>
         <div className="wink">
           <Image
-            src="/img/sol_guino.svg"
-            alt="Argentina"
-            width={96}
-            height={96}
+            src="/img/nigeria.png"
+            alt="Nigeria"
+            width={156}
+            height={130}
             priority
           />
         </div>
@@ -307,7 +307,7 @@ function Content({ designers, handleOpenFilter, className, onClick }) {
         }
 
         tbody tr:hover {
-          color: rgba(255, 255, 255, 0.8);
+          color: rgba(0, 100, 0);
         }
 
         table tbody td {

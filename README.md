@@ -1,6 +1,6 @@
 # Nigerians Who Design
 
-![](https://argentinianswho.design/img/preview.png)
+![](https://nigerians-who-design-bosslevan.vercel.app/img/preview.png)
 
 The website is built using Google Spreedsheet, [Next.js](https://nextjs.org/) and deployed at [Vercel](https://vercel.com/).
 

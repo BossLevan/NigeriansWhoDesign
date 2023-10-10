@@ -145,8 +145,8 @@ table tbody tr:last-child td {
   display: inline-block;
 }
 
-.letter:nth-child(-n + 12) {
-  color: #74acdf;
+.letter:nth-child(-n + 13) {
+  color: #028753;
 }
 
 .title {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function Nav(props) {
   return (
@@ -11,11 +11,6 @@ export default function Nav(props) {
       <li>
         <Link href="/nominate">
           <a>Nominate</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="https://cafecito.app/argentiniansdesign">
-          <a target="_blank">Donate</a>
         </Link>
       </li>
 
@@ -52,5 +47,5 @@ export default function Nav(props) {
         }
       `}</style>
     </ul>
-  );
+  )
 }
