@@ -12,7 +12,7 @@ export default function MetaTags() {
 
       {/* <!-- Open Graph / Facebook --/> */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://nigerianswho.design" />
+      <meta property="og:url" content="https://nigeriianswho.design" />
       <meta property="og:title" content="Nigerians Who Design" />
       <meta
         property="og:description"
@@ -67,7 +67,7 @@ export default function MetaTags() {
       />
       <meta
         name="twitter:image"
-        content="https://nigerianswho.design/img/preview.png"
+        content="https://nigeriianswho.design/img/preview.png"
       />
     </>
   )
